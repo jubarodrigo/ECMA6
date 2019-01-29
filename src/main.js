@@ -1,14 +1,25 @@
-import axios from 'axios';
+class App {
+    constructor() {
+        this.repositories = [];
 
-class Api{
+        this.formEl = document.getElementById('repo-form');
 
-    static async getUserInfo(username) {
-        try {
-            const response = await axios.get(`https://api.github.com/users/${username}`)
-        } catch (error) {
-            console.warn('Erro na Api');
-        }
+        this.registerHandlers();
+    }
+
+    registerHandlers() {
+        this.formEl.onsubmit = event => this.addRepository(event);
+    }
+
+    addRepository(event) {
+        event.preventDefault();
+
+        this.repositories.push({
+            name: '',
+            description: '',
+            avatar_url: '',
+            html_url: '',
+        })
+
     }
 }
-
-Api.getUserInfo('jubarodrigo');
