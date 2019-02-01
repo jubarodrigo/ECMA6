@@ -45,10 +45,10 @@ class App {
             let imgEl = document.createElement('img');
             imgEl.setAttribute('src', repo.avatar_url);
 
-            let titleEl = documento.createElement('strong');
+            let titleEl = document.createElement('strong');
             titleEl.appendChild(document.createTextNode(repo.name));
 
-            let descriptionEl = documento.createElement('p');
+            let descriptionEl = document.createElement('p');
             descriptionEl.appendChild(document.createTextNode(repo.description));
 
             let linkEl = document.createElement('a');
