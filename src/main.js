@@ -19,18 +19,21 @@ class App {
         event.preventDefault();
 
         const repoInput = this.inputEl.value;
-
         if (repoInput.lenght === 0)
             return;
 
         const response = await api.get(`/repos/${repoInput}`);
 
+        const {name, description, html_url, owner: {avatar_url}} = response.data;
+
         this.repositories.push({
-            name: '',
-            description: '',
-            avatar_url: '',
-            html_url: '',
+            name,
+            description,
+            avatar_url,
+            html_url,
         });
+
+        this.inputEl.value = '';
 
         this.render();
     }
@@ -50,6 +53,7 @@ class App {
 
             let linkEl = document.createElement('a');
             linkEl.setAttribute('target', '_blank');
+            linkEl.setAttribute('href', repo.html_url);
             linkEl.appendChild(document.createTextNode('Acessar'));
 
             let listItemEl = document.createElement('li');
@@ -64,3 +68,5 @@ class App {
     }
 
 }
+
+new App();
